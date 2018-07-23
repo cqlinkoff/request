@@ -1,0 +1,37 @@
+{
+  "name": "@cqmbr/request",
+  "version": "1.0.0",
+  "description": "http request based on fetch api",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cqmbr/request.git"
+  },
+  "keywords": [
+    "request",
+    "fetch",
+    "http"
+  ],
+  "author": "kagawagao <kingsongao1221@gmail.com> (https://kingsongao.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cqmbr/request/issues"
+  },
+  "homepage": "https://github.com/cqmbr/request#readme",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.54",
+    "@babel/preset-env": "^7.0.0-beta.54",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.2.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "jest": "^23.4.1"
+  }
+}

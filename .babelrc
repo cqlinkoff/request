@@ -1,0 +1,17 @@
+{
+  "env": {
+    "es": {
+      "presets": [
+        ["@babel/preset-env", {
+          "modules": false,
+          "loose": true
+        }]
+      ]
+    },
+    "commonjs": {
+      "presets": [
+        ["@babel/preset-env"]
+      ]
+    }
+  }
+}
