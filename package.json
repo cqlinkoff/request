@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "description": "http request based on fetch api",
   "main": "lib/index.js",
+  "module": "es/index.js",
+  "sideEffects": false,
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "npm run lint:js",
+    "lint:js": "eslint ./src/**",
+    "prebuild": "npm run lint",
+    "build": "npm run build:es && npm run build:commonjs",
+    "build:commonjs": "BABEL_ENV=commonjs babel src -d lib",
+    "build:es": "BABEL_ENV=es babel src -d es"
   },
   "repository": {
     "type": "git",
@@ -22,7 +30,10 @@
   },
   "homepage": "https://github.com/cqmbr/request#readme",
   "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.54",
     "@babel/core": "^7.0.0-beta.54",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.54",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.54",
     "@babel/preset-env": "^7.0.0-beta.54",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.6",
@@ -33,5 +44,19 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "jest": "^23.4.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.54",
+    "lodash": "^4.17.10",
+    "query-string": "^6.1.0",
+    "string-template": "^1.0.0"
+  },
+  "files": [
+    "es",
+    "lib"
+  ],
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
   }
 }
