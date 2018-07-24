@@ -11,5 +11,5 @@ install:
 script:
   - npm run build
 
-# after_success:
-#   - npm run coverage
+after_success:
+  - npm run coverage

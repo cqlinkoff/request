@@ -8,6 +8,11 @@
         }]
       ]
     },
+    "test": {
+      "presets": [
+        ["@babel/preset-env"]
+      ]
+    },
     "commonjs": {
       "presets": [
         ["@babel/preset-env"]

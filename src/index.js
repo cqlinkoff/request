@@ -8,8 +8,8 @@ const noop = (arg) => arg
 export default class Request {
   constructor (options = {}) {
     const {
-      baseURL,
-      headers,
+      baseURL = '',
+      headers = {},
       beforeRequest = noop,
       afterRequest = noop
     } = options
@@ -37,10 +37,10 @@ export default class Request {
     }
   }
 
-  __parseReq = ({ url, query, params, body, baseURL = this.baseURL, ...req }) => {
+  __parseReq = ({ url, query, params, body, baseURL = this.baseURL, method = 'GET', ...req }) => {
     if (body) {
       if (typeof body === 'object') {
-        if (/^(POST|PUT|PATCH)$/i.test(req.method)) {
+        if (/^(POST|PUT|PATCH)$/i.test(method)) {
           body = JSON.stringify(body)
         } else {
           url += ((url.indexOf('?') !== -1) ? '&' : '?') + qs.stringify(body)
