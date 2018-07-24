@@ -64,7 +64,7 @@ const request = new Request(options)
 
 ## `requestOptions`
 
-> request config, may have follow keys:
+> request config
 
 - `url`: `string`
 > resource url, it will be automatically added after `baseURL` if you set it in constructor, support `params`
@@ -80,3 +80,4 @@ const request = new Request(options)
 ## TODO
 
 - [ ] unit test
+- [ ] flow support
