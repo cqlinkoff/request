@@ -14,5 +14,8 @@ module.exports = {
   ],
   'globals': {
     'NODE_ENV': 'test'
-  }
+  },
+  'setupFiles': [
+    './test/setup.js'
+  ]
 }
