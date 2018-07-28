@@ -33,7 +33,7 @@ export default class Request {
     try {
       return JSON.parse(body)
     } catch (error) {
-      return { body }
+      return body
     }
   }
 
@@ -70,6 +70,7 @@ export default class Request {
     }
 
     req.url = url
+    req.method = method
     return req
   }
 
