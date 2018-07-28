@@ -79,5 +79,5 @@ const request = new Request(options)
 
 ## TODO
 
-- [ ] unit test
+- [x] unit test
 - [ ] flow support
