@@ -52,8 +52,119 @@ describe('Request', () => {
     const data = await request.get('/test')
     expect(data).toEqual(testData)
   })
+  test('basic request use GET with custom host', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'GET',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(testData)
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9001',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await request.get('http://localhost:9000/test')
+    expect(data).toEqual(testData)
+  })
 
   test('basic request use GET with query', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'GET',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: (req, reply) => {
+          expect(req.query).toEqual({
+            test: 'test'
+          })
+          reply(JSON.stringify(testData))
+        }
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await request.get('/test', {
+      query: {
+        test: 'test'
+      }
+    })
+    expect(data).toEqual(testData)
+  })
+
+  test('basic request use GET with empty query', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'GET',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: (req, reply) => {
+          expect(req.query).toEqual({
+            a: 'b'
+          })
+          reply(JSON.stringify(testData))
+        }
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await request.get('/test?a=b', {
+      query: {}
+    })
+    expect(data).toEqual(testData)
+  })
+
+  test('basic request use GET with invalid query', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'GET',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: (req, reply) => {
+          expect(req.query).toEqual({
+            a: 'b',
+            xxx: ''
+          })
+          reply(JSON.stringify(testData))
+        }
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await request.get('/test?a=b', {
+      query: 'xxx'
+    })
+    expect(data).toEqual(testData)
+  })
+
+  test('basic request use GET with query with exist search', async () => {
     const testData = { hello: 'world' }
     server.on({
       method: 'GET',
@@ -208,6 +319,72 @@ describe('Request', () => {
     })
   })
 
+  test('basic request use POST with no requestOption', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'POST',
+      path: '/test',
+      reply: {
+        status: 201,
+        headers: { 'content-type': 'application/json' },
+        body: (req, reply) => {
+          expect(req.body).toEqual({})
+          reply(JSON.stringify({
+            ...testData,
+            id: 1
+          }))
+        }
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await request.post('/test')
+
+    expect(data).toEqual({
+      ...testData,
+      id: 1
+    })
+  })
+
+  test('basic request use POST with custom body', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'POST',
+      path: '/test',
+      reply: {
+        status: 201,
+        headers: { 'content-type': 'application/json' },
+        body: (req, reply) => {
+          expect(req.body).toBeUndefined()
+          reply(JSON.stringify({
+            ...testData,
+            id: 1
+          }))
+        }
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: {
+        'Content-Type': 'text/plain'
+      }
+    })
+    const data = await request.post('/test', {
+      body: 'test'
+    })
+
+    expect(data).toEqual({
+      ...testData,
+      id: 1
+    })
+  })
+
   test('basic request use PUT', async () => {
     const testData = { hello: 'world' }
     server.on({
@@ -235,6 +412,38 @@ describe('Request', () => {
     const data = await request.put('/test', {
       body: testData
     })
+
+    expect(data).toEqual({
+      ...testData,
+      id: 1
+    })
+  })
+
+  test('basic request use PUT with no requestOption', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'PUT',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: (req, reply) => {
+          expect(req.body).toEqual({})
+          reply(JSON.stringify({
+            ...testData,
+            id: 1
+          }))
+        }
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await request.put('/test')
 
     expect(data).toEqual({
       ...testData,
@@ -276,6 +485,38 @@ describe('Request', () => {
     })
   })
 
+  test('basic request use PATCH with no requestOption', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'PATCH',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: (req, reply) => {
+          expect(req.body).toEqual({})
+          reply(JSON.stringify({
+            ...testData,
+            id: 1
+          }))
+        }
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await request.patch('/test')
+
+    expect(data).toEqual({
+      ...testData,
+      id: 1
+    })
+  })
+
   test('basic request use DELETE', async () => {
     const testData = { hello: 'world' }
     server.on({
@@ -285,6 +526,7 @@ describe('Request', () => {
         status: 200,
         headers: { 'content-type': 'application/json' },
         body: (req, reply) => {
+          expect(req.query).toEqual(testData)
           reply(JSON.stringify({
             ...testData,
             id: 1
@@ -309,13 +551,44 @@ describe('Request', () => {
     })
   })
 
+  test('basic request use DELETE with no requestOption', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'DELETE',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: (req, reply) => {
+          reply(JSON.stringify({
+            ...testData,
+            id: 1
+          }))
+        }
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await request.del('/test')
+
+    expect(data).toEqual({
+      ...testData,
+      id: 1
+    })
+  })
+
   test('basic request with response content type is text', async () => {
     server.on({
       method: 'GET',
       path: '/test',
       reply: {
         status: 200,
-        headers: { 'content-type': 'plaintext/text' },
+        headers: { 'content-type': 'text/plain' },
         body: 'test'
       }
     })
@@ -341,7 +614,7 @@ describe('Request', () => {
       path: '/test',
       reply: {
         status: 404,
-        headers: { 'content-type': 'plaintext/text' },
+        headers: { 'content-type': 'text/plain' },
         body: JSON.stringify(error)
       }
     })
@@ -399,7 +672,7 @@ describe('Request', () => {
       path: '/test',
       reply: {
         status: 200,
-        headers: { 'content-type': 'plaintext/text' },
+        headers: { 'content-type': 'text/plain' },
         body: (req, reply) => {
           expect(req.headers.test).toBeUndefined()
           reply(JSON.stringify(testData))
