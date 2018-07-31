@@ -359,6 +359,66 @@ describe('Request', () => {
     }
   })
 
+  test('basic request with beforeRequest and afterRequest hook', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'GET',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: (req, reply) => {
+          expect(req.headers.test).toBe('test')
+          reply(JSON.stringify(testData))
+        }
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      beforeRequest: async (req) => {
+        req.headers.test = 'test'
+        return req
+      },
+      afterRequest: async (res) => {
+        expect(res.status).toBe(200)
+        return res
+      }
+    })
+    const data = await request.get('/test')
+    expect(data).toEqual(testData)
+  })
+
+  test('basic request with invalid beforeRequest and afterRequest hook', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'GET',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'plaintext/text' },
+        body: (req, reply) => {
+          expect(req.headers.test).toBeUndefined()
+          reply(JSON.stringify(testData))
+        }
+      }
+    })
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      beforeRequest: [],
+      afterRequest: []
+    })
+    const data = await request.get('/test')
+    expect(data).toEqual(testData)
+  })
+
   test('basic request with invalid url', async () => {
     const request = new Request({
       headers: {
