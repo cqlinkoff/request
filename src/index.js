@@ -104,7 +104,7 @@ export default class Request {
         req = await this.beforeRequest(req)
       }
 
-      let res = await window.fetch(req.url, req)
+      let res = await fetch(req.url, req)
       if (typeof this.afterRequest === 'function') {
         res = await this.afterRequest(res)
       }
