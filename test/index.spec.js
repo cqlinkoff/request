@@ -659,8 +659,7 @@ describe('Request', () => {
       afterRequest: async (res) => {
         expect(res.status).toBe(200)
         expect(res.data).toEqual(testData)
-        res.ok = false
-        return res
+        throw res
       }
     })
     try {

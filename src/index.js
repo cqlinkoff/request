@@ -116,6 +116,10 @@ export default class Request {
         throw data
       }
     } catch (error) {
+      // throw response directly in afterRequest
+      if (error.data) {
+        throw error.data
+      }
       throw error
     }
   }
