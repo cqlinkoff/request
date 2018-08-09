@@ -658,11 +658,16 @@ describe('Request', () => {
       },
       afterRequest: async (res) => {
         expect(res.status).toBe(200)
+        expect(res.data).toEqual(testData)
+        res.ok = false
         return res
       }
     })
-    const data = await request.get('/test')
-    expect(data).toEqual(testData)
+    try {
+      await request.get('/test')
+    } catch (error) {
+      expect(error).toEqual(testData)
+    }
   })
 
   test('basic request with invalid beforeRequest and afterRequest hook', async () => {

@@ -105,15 +105,15 @@ export default class Request {
       }
 
       let res = await fetch(req.url, req)
+      const data = await this.__getBody(res)
+      res.data = data
       if (typeof this.afterRequest === 'function') {
         res = await this.afterRequest(res)
       }
-      const body = await this.__getBody(res)
-
-      if (res.status >= 200 && res.status < 400) {
-        return body
+      if (res.ok) {
+        return data
       } else {
-        throw body
+        throw data
       }
     } catch (error) {
       throw error
