@@ -717,4 +717,33 @@ describe('Request', () => {
       expect(error).toEqual(new TypeError('Options must be an object!'))
     }
   })
+
+  test('custom headers should not change default headers', async () => {
+    const testData = { hello: 'world' }
+    server.on({
+      method: 'GET',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(testData)
+      }
+    })
+
+    const defaultHeaders = {
+      'Content-Type': 'application/json'
+    }
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: defaultHeaders
+    })
+    const data = await request.get('/test', {
+      headers: {
+        test: '1111'
+      }
+    })
+    expect(data).toEqual(testData)
+    expect(request.defaultHeaders).toEqual(defaultHeaders)
+  })
 })
