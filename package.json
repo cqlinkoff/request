@@ -1,13 +1,13 @@
 {
   "name": "@cqmbr/request",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "http request based on fetch api",
   "main": "lib/index.js",
   "module": "es/index.js",
   "sideEffects": false,
   "scripts": {
     "pretest": "npm run lint",
-    "test": "jest",
+    "test": "jest --no-cache",
     "lint": "npm run lint:js",
     "lint:js": "eslint ./src/**",
     "prebuild": "npm run test",

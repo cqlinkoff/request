@@ -37,7 +37,7 @@ export default class Request {
     }
   }
 
-  __parseReq = ({ url, query, params, body, baseURL = this.baseURL, method = 'GET', headers = {}, ...req }) => {
+  __parseReq = ({ url, query, params, body, baseURL = this.baseURL, method = 'GET', ...req }) => {
     if (body) {
       if (typeof body === 'object') {
         if (/^(POST|PUT|PATCH)$/i.test(method)) {
@@ -87,13 +87,15 @@ export default class Request {
       options.url = url
     }
 
-    if (isPlainObject(options.headers)) {
-      Object.keys(this.defaultHeaders).map(key => {
-        if (typeof options.headers[key] === 'undefined') {
-          options.headers[key] = this.defaultHeaders[key]
-        }
-      })
-    }
+    const { headers = {} } = options
+
+    Object.keys(this.defaultHeaders).map(key => {
+      if (typeof headers[key] === 'undefined') {
+        headers[key] = this.defaultHeaders[key]
+      }
+    })
+
+    options.headers = headers
 
     if (!isString(options.url)) {
       throw new TypeError('URL must be string')

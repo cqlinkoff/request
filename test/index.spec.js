@@ -740,7 +740,8 @@ describe('Request', () => {
     })
     const data = await request.get('/test', {
       headers: {
-        test: '1111'
+        test: '1111',
+        'Content-Type': 'application/json'
       }
     })
     expect(data).toEqual(testData)
