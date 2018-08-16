@@ -37,7 +37,7 @@ export default class Request {
     }
   }
 
-  __parseReq = ({ url, query, params, body, baseURL = this.baseURL, method = 'GET', ...req }) => {
+  __parseReq = ({ url, query, params, body, baseURL = this.baseURL, method = 'GET', headers = {}, ...req }) => {
     if (body) {
       if (typeof body === 'object') {
         if (/^(POST|PUT|PATCH)$/i.test(method)) {
@@ -93,8 +93,6 @@ export default class Request {
           options.headers[key] = this.defaultHeaders[key]
         }
       })
-    } else {
-      options.headers = this.defaultHeaders
     }
 
     if (!isString(options.url)) {
