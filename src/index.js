@@ -88,7 +88,11 @@ export default class Request {
     }
 
     if (isPlainObject(options.headers)) {
-      options.headers = { ...this.defaultHeaders, ...options.headers }
+      Object.keys(this.defaultHeaders).map(key => {
+        if (typeof options.headers[key] === 'undefined') {
+          options.headers[key] = this.defaultHeaders[key]
+        }
+      })
     } else {
       options.headers = this.defaultHeaders
     }
