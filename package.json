@@ -15,7 +15,8 @@
     "build:commonjs": "BABEL_ENV=commonjs babel src -d lib",
     "build:es": "BABEL_ENV=es babel src -d es",
     "coverage": "cat ./coverage/lcov.info | coveralls",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "preversion": "npm run build"
   },
   "repository": {
     "type": "git",
