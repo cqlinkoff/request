@@ -115,9 +115,9 @@ export default class Request {
         res = await this.afterRequest(res)
       }
       if (res.ok) {
-        return data
+        return res.data
       } else {
-        throw data
+        throw res.data
       }
     } catch (error) {
       // throw response directly in afterRequest
