@@ -747,4 +747,29 @@ describe('Request', () => {
     expect(data).toEqual(testData)
     expect(request.defaultHeaders).toEqual(defaultHeaders)
   })
+
+  test('basic request with invalid body should throw REQUEST_ERROR', async () => {
+    server.on({
+      method: 'GET',
+      path: '/test',
+      reply: {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: ''
+      }
+    })
+    const defaultHeaders = {
+      'Content-Type': 'application/json'
+    }
+
+    const request = new Request({
+      baseURL: 'http://localhost:9000',
+      headers: defaultHeaders
+    })
+    try {
+      await request.get('/test')
+    } catch (error) {
+      expect(error).toEqual(new Error('REQUEST_ERROR'))
+    }
+  })
 })

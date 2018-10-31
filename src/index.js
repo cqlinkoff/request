@@ -24,8 +24,12 @@ export default class Request {
     const type = res.headers.get('Content-Type')
 
     if (type && type.indexOf('json') !== -1) {
-      const json = await res.json()
-      return json
+      try {
+        const json = await res.json()
+        return json
+      } catch (error) {
+        throw new Error('REQUEST_ERROR')
+      }
     }
 
     const body = await res.text()
