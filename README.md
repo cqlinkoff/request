@@ -2,23 +2,23 @@
 
 > http request based on [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) api
 
-[![node](https://img.shields.io/node/v/@cqmbr/request.svg)](https://www.npmjs.com/package/@cqmbr/request)
-[![npm](https://img.shields.io/npm/v/@cqmbr/request.svg)](https://www.npmjs.com/package/@cqmbr/request)
-[![license](https://img.shields.io/npm/l/@cqmbr/request.svg)](https://github.com/cqmbr/request/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/cqmbr/request.svg?branch=master)](https://travis-ci.org/cqmbr/request)
+[![node](https://img.shields.io/node/v/@cqlinkoff/request.svg)](https://www.npmjs.com/package/@cqlinkoff/request)
+[![npm](https://img.shields.io/npm/v/@cqlinkoff/request.svg)](https://www.npmjs.com/package/@cqlinkoff/request)
+[![license](https://img.shields.io/npm/l/@cqlinkoff/request.svg)](https://github.com/cqlinkoff/request/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/cqlinkoff/request.svg?branch=master)](https://travis-ci.org/cqlinkoff/request)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
-[![Coverage Status](https://coveralls.io/repos/github/cqmbr/request/badge.svg?branch=master)](https://coveralls.io/github/cqmbr/request?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/cqlinkoff/request/badge.svg?branch=master)](https://coveralls.io/github/cqlinkoff/request?branch=master)
 
 ## Installation
 
 ```bash
-npm i @cqmbr/request
+npm i @cqlinkoff/request
 ```
 
 ## Use
 
 ```js
-import Request from '@cqmbr/request'
+import Request from '@cqlinkoff/request'
 
 const request = new Request(options)
 ```

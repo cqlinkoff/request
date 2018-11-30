@@ -1,5 +1,5 @@
 {
-  "name": "@cqmbr/request",
+  "name": "@cqlinkoff/request",
   "version": "1.2.2",
   "description": "http request based on fetch api",
   "main": "lib/index.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cqmbr/request.git"
+    "url": "git+https://github.com/cqlinkoff/request.git"
   },
   "keywords": [
     "request",
@@ -30,30 +30,30 @@
   "author": "kagawagao <kingsongao1221@gmail.com> (https://kingsongao.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cqmbr/request/issues"
+    "url": "https://github.com/cqlinkoff/request/issues"
   },
-  "homepage": "https://github.com/cqmbr/request#readme",
+  "homepage": "https://github.com/cqlinkoff/request#readme",
   "devDependencies": {
-    "@babel/cli": "^7.1.2",
-    "@babel/core": "^7.1.2",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/runtime": "^7.1.2",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/runtime": "^7.1.5",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^9.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "coveralls": "^3.0.2",
-    "eslint": "^5.8.0",
+    "eslint": "^5.9.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "isomorphic-fetch": "^2.2.1",
     "jest": "^23.6.0",
     "lodash": "^4.17.11",
-    "mock-http-server": "^1.0.0",
+    "mock-http-server": "^1.1.0",
     "query-string": "^5.1.1",
     "string-template": "^1.0.0"
   },
