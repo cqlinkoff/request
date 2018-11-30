@@ -360,7 +360,7 @@ describe('Request', () => {
         status: 201,
         headers: { 'content-type': 'application/json' },
         body: (req, reply) => {
-          expect(req.body).toBeUndefined()
+          expect(req.body).toEqual({})
           reply(JSON.stringify({
             ...testData,
             id: 1
