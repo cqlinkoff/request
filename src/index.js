@@ -1,4 +1,4 @@
-import qs from 'query-string'
+import qs from 'qs'
 import template from 'string-template'
 import isPlainObject from 'lodash/isPlainObject'
 import isString from 'lodash/isString'

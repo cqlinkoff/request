@@ -34,33 +34,32 @@
   },
   "homepage": "https://github.com/cqlinkoff/request#readme",
   "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.6",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-transform-runtime": "^7.1.0",
-    "@babel/preset-env": "^7.1.6",
-    "@babel/runtime": "^7.1.5",
-    "babel-core": "^7.0.0-bridge.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
-    "coveralls": "^3.0.2",
-    "eslint": "^5.9.0",
+    "babel-jest": "^24.1.0",
+    "coveralls": "^3.0.3",
+    "eslint": "^5.14.1",
     "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "isomorphic-fetch": "^2.2.1",
-    "jest": "^23.6.0",
+    "jest": "^24.1.0",
     "lodash": "^4.17.11",
-    "mock-http-server": "^1.1.0",
-    "query-string": "^5.1.1",
+    "mock-http-server": "^1.2.0",
+    "qs": "^6.6.0",
     "string-template": "^1.0.0"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.1.2",
     "lodash": "^4.17.11",
-    "query-string": "^5.1.1",
+    "qs": "^6.6.0",
     "string-template": "^1.0.0"
   },
   "files": [
@@ -70,5 +69,6 @@
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
-  }
+  },
+  "dependencies": {}
 }
